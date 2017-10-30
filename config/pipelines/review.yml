@@ -1,25 +1,25 @@
 # Check `docs/pipeline.md` to get info about this file
 
 resources:
-- name: hellokite-repository
+- name: andrey-hellokite-repository
   type: git
   source:
-    uri: https://github.com/helios-technologies/hellokite
+    uri: https://github.com/andreymakovenko/hellokite
     branch: master
 
-- name: hellokite-image
+- name: andrey-hellokite-image
   type: docker-image
   source:
-    repository: gcr.io/helios-devel/hellokite
+    repository: gcr.io/helios-devel/andrey-hellokite
     username: {{docker_username}}
     password: {{docker_password}}
 
 jobs:
-- name: hellokite
+- name: andrey-hellokite
   serial: true
   plan:
-  - get: hellokite-repository
+  - get: andrey-hellokite-repository
     trigger: true
-  - put: hellokite-image
+  - put: andrey-hellokite-image
     params:
-      build: hellokite-repository
+      build: andrey-hellokite-repository
